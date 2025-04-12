@@ -14,7 +14,7 @@ A lightweight HTTP server built with Go to manage gym memberships. This project 
 
 ---
 
-## API Endpoints
+## The API Endpoints
 
 | Method | Endpoint                        | Description                           |
 |--------|---------------------------------|---------------------------------------|
