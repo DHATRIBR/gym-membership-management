@@ -14,14 +14,6 @@ pipeline {
             }
         }
 
-        stage('Install Go') {
-            steps {
-                echo '📦 Installing Go...'
-                sh 'curl -sSL https://dl.google.com/go/go1.18.3.linux-amd64.tar.gz | sudo tar -C /usr/local -xvzf -'
-                sh 'export PATH=$PATH:/usr/local/go/bin' // Ensure Go is available in the shell
-            }
-        }
-
         stage('Build') {
             steps {
                 echo '🏗️ Building the application...'
