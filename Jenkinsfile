@@ -31,11 +31,16 @@ pipeline {
 
         stage('Deploy to Staging') {
             steps {
-                echo '🚀 Deploying to staging environment...'
+                echo '🚀 Deploying to staging...'
+                sh '''
+                    mkdir -p staging
+                    cp myapp staging/
+                    echo "Deployed to STAGING at $(date)" >> staging/deploy.log
+                '''
             }
         }
 
-        stage('Approval') {
+	stage('Approval') {
             steps {
                 input message: 'Ready to deploy to Production?'
             }
@@ -43,9 +48,16 @@ pipeline {
 
         stage('Deploy to Production') {
             steps {
-                echo '🚀 Deploying to production environment...'
+                input message: 'Promote to Production?', ok: 'Deploy'
+                echo '🚀 Deploying to production...'
+                sh '''
+                    mkdir -p production
+                    cp myapp production/
+                    echo "Deployed to PRODUCTION at $(date)" >> production/deploy.log
+                '''
             }
         }
+
     }
 
     post {
