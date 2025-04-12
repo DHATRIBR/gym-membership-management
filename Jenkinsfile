@@ -40,12 +40,6 @@ pipeline {
             }
         }
 
-	stage('Approval') {
-            steps {
-                input message: 'Ready to deploy to Production?'
-            }
-        }
-
         stage('Deploy to Production') {
             steps {
                 input message: 'Promote to Production?', ok: 'Deploy'
