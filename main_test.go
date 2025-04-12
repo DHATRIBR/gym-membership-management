@@ -53,7 +53,7 @@ func TestRegisterMembership(t *testing.T) {
     var response map[string]interface{}
     decodeResponseBody(t, rr.Body.Bytes(), &response)
 
-    if response["message"] != "Membership registered successfully" {
+    if response["message"] != "Membership registered successfulllllly" {
         t.Errorf("unexpected response message: got %v", response["message"])
     }
 }
