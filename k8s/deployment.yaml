@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: gym-membership
-        image: gym-membership:latest
+        image: nginx:test-1.21
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
