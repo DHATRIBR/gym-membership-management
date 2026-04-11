@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: gym-membership
-        image: gym-membership:latest
+        image: app:v2.0
         ports:
         - containerPort: 8080
         resources:
