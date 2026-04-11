@@ -276,6 +276,8 @@ Consistent error responses are returned with HTTP error codes:
 - **Go** installed on your system (version 1.16 or higher recommended).
 
 ### Setup
+
+#### Option 1: Run Locally
 1. Clone this repository:
    ```bash
    git clone https://github.com/your-username/gym-membership-management.git
@@ -288,6 +290,63 @@ Consistent error responses are returned with HTTP error codes:
    ```
 
 3. Access the server at [http://localhost:8080](http://localhost:8080).
+
+#### Option 2: Run with Docker
+1. Build the Docker image:
+   ```bash
+   docker build -t gym-membership:latest .
+   ```
+
+2. Run the container:
+   ```bash
+   docker run -p 8080:8080 gym-membership:latest
+   ```
+
+3. Access the server at [http://localhost:8080](http://localhost:8080).
+
+#### Option 3: Deploy to Kubernetes
+1. Build and tag the Docker image:
+   ```bash
+   docker build -t gym-membership:latest .
+   ```
+
+2. If using a container registry (e.g., Docker Hub, GCR), push the image:
+   ```bash
+   docker tag gym-membership:latest <your-registry>/gym-membership:latest
+   docker push <your-registry>/gym-membership:latest
+   ```
+   
+   Update the image in `k8s/deployment.yaml` to match your registry path.
+
+3. Deploy to Kubernetes:
+   ```bash
+   kubectl apply -f k8s/deployment.yaml
+   kubectl apply -f k8s/service.yaml
+   ```
+
+4. Check the deployment status:
+   ```bash
+   kubectl get pods
+   kubectl get services
+   ```
+
+5. Get the external IP (for LoadBalancer):
+   ```bash
+   kubectl get service gym-membership
+   ```
+   
+   Wait for the `EXTERNAL-IP` to be assigned (may take a few minutes). Once available, access the server at `http://<EXTERNAL-IP>`.
+
+6. For Minikube users:
+   ```bash
+   minikube service gym-membership
+   ```
+
+7. To delete the deployment:
+   ```bash
+   kubectl delete -f k8s/service.yaml
+   kubectl delete -f k8s/deployment.yaml
+   ```
 
 ---
 
