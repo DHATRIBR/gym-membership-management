@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gym-membership
+  namespace: gym-mgmt
   labels:
     app: gym-membership
 spec:
@@ -17,8 +18,11 @@ spec:
       containers:
       - name: gym-membership
         image: gym-membership:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
+          name: http
+          protocol: TCP
         resources:
           requests:
             memory: "64Mi"
@@ -30,11 +34,19 @@ spec:
           httpGet:
             path: /
             port: 8080
+            scheme: HTTP
           initialDelaySeconds: 10
           periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
         readinessProbe:
           httpGet:
             path: /
             port: 8080
+            scheme: HTTP
           initialDelaySeconds: 5
           periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+          successThreshold: 1
