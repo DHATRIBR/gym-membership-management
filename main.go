@@ -18,12 +18,14 @@ var memberships = map[string]Member{} // In-memory store
 func setJSONResponseHeader(w http.ResponseWriter) {
 	w.Header().Set("Content-Type", "application/json")
 }
+
 func isValidDate(dateStr string) bool {
     // Define the expected date format
     layout := "2006-01-02" // Go's standard format for parsing dates
     _, err := time.Parse(layout, dateStr)
     return err == nil // If err is nil, the date is valid
 }
+
 func rootRouteHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintln(w, "Welcome to the root route of the Go HTTP Server!")
 }
@@ -143,7 +145,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
     case "PATCH":
         modifyMembershipStartDate(w, r)
     default:
-        
         http.Error(w, `{"message": "Method not allowed"}`, http.StatusMethodNotAllowed)
     }
 }
