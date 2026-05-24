@@ -84,6 +84,14 @@ HTTP Status: `400 Bad Request`
 }
 ```
 
+**Response (Duplicate Email)**:  
+HTTP Status: `400 Bad Request`  
+```json
+{
+    "message": "Membership already exists with this email"
+}
+```
+
 ---
 
 ### **3. GET `/memberships?email={email}`**
@@ -211,7 +219,7 @@ http://localhost:8080/memberships?email=email@example.com
 Request Body:
 ```json
 {
-    "start_date": "2025-04-31"
+    "start_date": "2025-04-30"
 }
 ```
 
