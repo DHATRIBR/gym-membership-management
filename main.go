@@ -25,7 +25,7 @@ func isValidDate(dateStr string) bool {
     return err == nil // If err is nil, the date is valid
 }
 func rootRouteHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintln(w, "Welcome to the Go HTTP Server!")
+    fmt.Fprintln(w, "Welcome to the root route of the Go HTTP Server!")
 }
 
 func registerMembership(w http.ResponseWriter, r *http.Request) {
@@ -153,8 +153,8 @@ func main() {
     http.HandleFunc("/memberships", handler)
 	http.HandleFunc("/memberships/", handler)
 
-    fmt.Println("Server is running on http://localhost:8080")
+    fmt.Println("Server started and is running on http://localhost:8080")
     if err := http.ListenAndServe(":8080", nil); err != nil {
-        fmt.Println("Error starting server: ", err)
+        fmt.Println("Oh no! Error starting server: ", err)
     }
 }
